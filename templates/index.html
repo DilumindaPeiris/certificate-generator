@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Generator UI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header class="header">
+            <h1>Certificate Generator</h1>
+            <p>Automate your customized certificates with a single click.</p>
+        </header>
+
+        <form id="generatorForm" class="glass-panel">
+            <div class="upload-grid">
+                <!-- CSV Upload -->
+                <div class="upload-zone" id="csvZone">
+                    <input type="file" id="csvFile" name="csvFile" accept=".csv" required hidden>
+                    <label for="csvFile" class="upload-label">
+                        <div class="icon">📄</div>
+                        <h3>Upload CSV</h3>
+                        <p class="file-name">No file selected</p>
+                    </label>
+                </div>
+
+                <!-- Template Upload -->
+                <div class="upload-zone" id="templateZone">
+                    <input type="file" id="templateImage" name="templateImage" accept="image/png, image/jpeg" required hidden>
+                    <label for="templateImage" class="upload-label">
+                        <div class="icon">🖼️</div>
+                        <h3>Upload Template</h3>
+                        <p class="file-name">No file selected</p>
+                    </label>
+                </div>
+
+                <!-- Font Upload -->
+                <div class="upload-zone" id="fontZone">
+                    <input type="file" id="fontFile" name="fontFile" accept=".ttf" required hidden>
+                    <label for="fontFile" class="upload-label">
+                        <div class="icon">🔤</div>
+                        <h3>Upload Font (.ttf)</h3>
+                        <p class="file-name">No file selected</p>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="setting-group">
+                    <label for="textY">Vertical Position (Y-axis):</label>
+                    <input type="number" id="textY" name="textY" value="500" required>
+                    <span class="tooltip-icon" title="Open your template in an image editor and note the Y-coordinate where the text should go.">ℹ️</span>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-generate">
+                <span class="btn-text">Generate Certificates</span>
+                <span class="spinner hidden"></span>
+            </button>
+            <div id="statusMessage" class="status-message hidden"></div>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
